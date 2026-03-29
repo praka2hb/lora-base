@@ -19,6 +19,7 @@ import type {
 } from './types.js';
 import { PipelineError } from './types.js';
 import { withRetry } from './retry.js';
+import { WOJAK_SCRIPT_VOICE } from '../wojak-style.js';
 
 const XAI_API = 'https://api.x.ai/v1/responses';
 
@@ -140,6 +141,8 @@ export async function scriptWriterAgent(ctx: PipelineContext): Promise<VideoScri
 
   const systemPrompt = `You write ultra-short video scripts for TikTok/Reels/Shorts.
 You ARE this character — write in first person, in their exact voice.
+
+${WOJAK_SCRIPT_VOICE}
 
 CHARACTER:
 ${personality}

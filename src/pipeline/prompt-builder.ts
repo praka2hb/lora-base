@@ -6,10 +6,10 @@ export interface BuiltPrompts {
 }
 
 const CATEGORY_STYLES: Record<string, string[]> = {
-  pokemon: ['cartoon style', 'vibrant colors', 'cel shaded', 'Pokemon art style'],
-  anime: ['anime style', 'anime art', 'vibrant colors', 'detailed anime'],
-  game: ['cartoon style', 'video game art', 'vibrant colors', 'stylized'],
-  cartoon: ['cartoon style', 'animated', 'vibrant colors', 'cel shaded'],
+  pokemon: ['wojak MS Paint meme style', 'flat colors', 'crude expressive shapes'],
+  anime: ['wojak reaction meme exaggeration', 'flat colors', 'NOT clean anime'],
+  game: ['retro gaming meme aesthetic', 'flat stylized', 'ironic HUD energy'],
+  cartoon: ['MS Paint cartoon', 'wojak meme line art', 'flat meme colors'],
 };
 
 export function buildPrompts(character: CharacterIdentity, scene: string): BuiltPrompts {
@@ -25,14 +25,13 @@ export function buildPrompts(character: CharacterIdentity, scene: string): Built
 
   const positiveFragments = [
     `portrait of ${visualDesc}`,
-    'consistent character design',
+    'wojak feels-guy inspired MS Paint meme aesthetic',
+    'consistent crude meme character design',
     'same character',
     scene,
     ...styleFragments,
-    'cinematic lighting',
-    'expressive',
-    'talking to camera',
-    'high quality',
+    'flat expressive lighting',
+    'talking to camera meme energy',
     'sharp focus',
   ];
 

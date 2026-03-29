@@ -19,6 +19,7 @@ import type {
 } from './types.js';
 import { PipelineError } from './types.js';
 import { withRetry } from './retry.js';
+import { WOJAK_SCRIPT_VOICE } from '../wojak-style.js';
 
 const XAI_API = 'https://api.x.ai/v1/responses';
 
@@ -145,7 +146,9 @@ export async function contentStrategyAgent(ctx: PipelineContext): Promise<Conten
           input: [
             {
               role: 'system',
-              content: `You are a content strategist for short-form video (TikTok/Reels). You decide what content to make next based on the creator's personality, content history, and audience psychology. Be specific and actionable.
+              content: `You are a content strategist for short-form meme video (TikTok/Reels). The creator is a Wojak-meme / crypto-Twitter style influencer — ironic, punchy, shareable. ${WOJAK_SCRIPT_VOICE}
+
+Be specific and actionable.
 
 Respond with valid JSON only, no markdown fences.`,
             },

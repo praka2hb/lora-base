@@ -14,6 +14,7 @@ import { createClient } from '@supabase/supabase-js';
 import type { PipelineContext, VideoOutput } from './types.js';
 import { PipelineError } from './types.js';
 import { config as workerConfig } from '../config.js';
+import { WOJAK_VIDEO_STYLE } from '../wojak-style.js';
 
 const XAI_BASE = 'https://api.x.ai/v1';
 
@@ -184,18 +185,18 @@ function buildVideoPrompt(params: {
   characterCategory?: string;
 }): string {
   const styleMap: Record<string, string> = {
-    educational: 'documentary style, clean professional visuals',
-    casual:      'warm natural lighting, friendly, lifestyle',
-    professional:'corporate, sleek, professional setting',
-    energetic:   'dynamic motion, bold visuals, high energy, cinematic',
+    educational: 'MS Paint meme explainer vibe, simple graphics feel, still wojak energy',
+    casual:      'crude meme clip lighting, ironic lifestyle, wojak reaction pacing',
+    professional:'clean but still flat meme-adjacent — not corporate stock',
+    energetic:   'chaotic wojak meme motion, bold flat colors, high energy',
   };
   const style = styleMap[params.tone] ?? styleMap['casual'];
 
   const categoryStyle: Record<string, string> = {
-    pokemon: 'vibrant anime-inspired, colorful, playful',
-    anime:   'anime art style, dynamic, expressive',
-    game:    'video game aesthetic, gaming atmosphere',
-    cartoon: 'cartoon animation, bright colors',
+    pokemon: 'wojak-meme color pops, playful crude shapes',
+    anime:   'exaggerated reaction faces, meme exaggeration not clean anime',
+    game:    'retro gaming meme HUD vibes, ironic',
+    cartoon: 'MS Paint cartoon, flat meme colors',
   };
   const catStyle = params.characterCategory
     ? categoryStyle[params.characterCategory.toLowerCase()] ?? ''
@@ -208,11 +209,12 @@ function buildVideoPrompt(params: {
   const narrationExcerpt = words.slice(0, maxWords).join(' ');
 
   const parts = [
-    `A ${params.durationSeconds}-second short-form social media video about: ${params.title}`,
+    `A ${params.durationSeconds}-second short-form vertical MEME video about: ${params.title}`,
+    WOJAK_VIDEO_STYLE,
     style,
     catStyle,
-    params.characterVisual ? `Character: ${params.characterVisual}` : '',
-    '9:16 portrait. Smooth motion. No text overlays. High quality.',
+    params.characterVisual ? `Character (wojak-meme look): ${params.characterVisual}` : '',
+    '9:16 portrait. Smooth motion. No on-screen text. Meme clip energy.',
     `Scene unfolds over ${params.durationSeconds} seconds. A narrator says: "${narrationExcerpt}"`,
   ].filter(Boolean);
 
